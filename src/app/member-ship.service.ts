@@ -27,8 +27,8 @@ loginUrl:string;
     this.loginUrl=this.AppConfig.apiRoot+'/api/login';
     console.log(this.AppConfig.apiRoot);
     //this.redirectUrl = '/account/login';
-    if(UserStatus){
-  this.fillUserStatusOnBoot();
+    if(!!UserStatus){
+        this.fillUserStatusOnBoot();
     }
 
   }

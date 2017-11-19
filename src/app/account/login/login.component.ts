@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     const loginVm:Login=new Login();
     loginVm.username=this.myform.get('UserName').value;
     loginVm.password=this.myform.get('Password').value;
-    this.membershipService.LoginNew(loginVm).subscribe(x=>{
+    this.membershipService.login(loginVm.username,loginVm.password).subscribe(x=>{
 this._ToastsManager.success('با موفقیت وارد شدید .','تبریک');
     })
   }
