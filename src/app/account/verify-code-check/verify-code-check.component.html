@@ -1,0 +1,30 @@
+<div class="container">
+  <form class="form-signin" [formGroup]="myform" action="index.html">
+    <h2 class="form-signin-heading"> بررسی کد تاییدیه</h2>
+    <div class="login-wrap">
+        <input type="text" class="form-control" placeholder="کد اعتبارسنجی را وارد کنید"  formControlName="VerifyCode" >
+        <div *ngIf="myform.controls.VerifyCode.touched ">
+        <span class="text-danger" *ngIf="!myform.controls.VerifyCode.valid" >تکمیل کد اعتبار سنجی همراه الزامی است . </span>
+</div>
+<!-- <div class="btn-group col-sm-12" >
+  <button class="btn col-sm-6 btn-login" (click)=(Login()) type="submit">ورود</button>
+  <button class="btn col-sm-6 btn-login" (click)=(Return()) type="button">بازگشت</button>
+</div> -->
+<div class="btn-group btn-group-justified">
+  <div class="btn-group">
+    <button class="btn btn-login" (click)=(Login()) type="submit"><i class="fa fa-unlock"></i>   ورود</button>
+  </div>
+  <div class="btn-group">
+    <button class="btn  btn-info" (click)=(Return()) type="button"  ><i class="fa fa-reply"></i>  بازگشت</button>
+  </div>
+
+</div>
+        <div class="registration" style="margin-top: 15px;">
+     آیا قبلا ثبت نام کرده اید ؟
+            <a class=""routerLink='/account/login'>
+              ورود
+            </a>
+        </div>
+    </div>
+  </form>
+</div>

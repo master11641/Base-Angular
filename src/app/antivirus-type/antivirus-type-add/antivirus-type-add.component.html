@@ -1,0 +1,19 @@
+<div class="panel panel-danger">
+  <div class="panel-heading">
+    <div class="panel-title">فرم افزودن آنتی ویروس</div>
+    </div>
+    <div class="panel-body">
+      <form novalidate [formGroup]="myform" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+          <label>نام گروه </label>
+          <input type="text" class="form-control" formControlName="Name">
+          <small [hidden]="myform.controls.Name.valid || (!myform.controls.Name.touched )" class="text-danger">
+        تکمیل نام آنتی ویروس الزامی  ضروری است .
+      </small>
+        </div>
+        <button class="btn btn-primary" type="submit" [disabled]="!myform.valid"> ثبت</button>
+      </form>
+    </div>
+
+</div>
