@@ -1,0 +1,116 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="form-group">
+      <input type="text" [(ngModel)]="queryModel.filterByValue" placeholder="Search For ..."
+        class="form-control" />
+    </div>
+    <div class="form-group">
+      <select class="form-control" name="filterColumn" [(ngModel)]="queryModel.filterByColumn">
+        <option value="">Filter by ...</option>
+        <option *ngFor="let column of columns" [value]="column.propertyName">
+          {{ column.title }}
+        </option>
+      </select>
+    </div>
+    <button class="btn btn-primary" type="button" (click)="doFilter()">Search</button>
+    <button class="btn btn-default" type="button" (click)="resetFilter()">Reset</button>
+  </div>
+</div>
+
+<div class="panel">
+  <input type="button" value="افزودن محصول جدید" class="btn btn-primary" (click)="addItem()"
+  />
+</div>
+
+<div>
+  <table class="table table-striped table-hover table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th class="text-center" style="width:3%">#</th>
+        <th *ngFor="let column of columns" class="text-center">
+          <div *ngIf="column.isSortable" (click)="sortBy(column.propertyName)" style="cursor: pointer">
+            {{ column.title }}
+            <i *ngIf="queryModel.sortBy === column.propertyName" class="glyphicon" [class.glyphicon-sort-by-order]="queryModel.isAscending"
+              [class.glyphicon-sort-by-order-alt]="!queryModel.isAscending"></i>
+          </div>
+          <div *ngIf="!column.isSortable" style="cursor: pointer">
+            {{ column.title }}
+          </div>
+        </th>
+        <th style="width:3%"></th>
+        <th style="width:3%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of queryResult.items; let i = index">
+        <ng-container [ngTemplateOutlet]="loadTemplate(item)" [ngTemplateOutletContext]="{ $implicit: item, idx: i }"></ng-container>
+      </tr>
+    </tbody>
+  </table>
+  <!-- http://valor-software.com/ngx-bootstrap/#/pagination -->
+  <div align="center">
+    <div class="row alert alert-info">
+      <div class="col-md-6">
+        <div class="col-md-5">
+          <label>تعداد ردیف ها در هر صفحه: </label>
+        </div>
+        <div class="col-md-7">
+          <select class="form-control" name="itemsNumber" [(ngModel)]="queryModel.pageSize"
+            (change)="resetPageSize()">
+            <option *ngFor="let item of itemsPerPage" [value]="item">
+              {{ item }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        صفحه: {{queryModel.page}} / {{numberOfPages}}, کل رکوردها: {{queryResult.totalItems}}
+      </div>
+    </div>
+    <pagination [maxSize]="8" [boundaryLinks]="true" [totalItems]="queryResult.totalItems"
+      [itemsPerPage]="queryModel.pageSize" [rotate]="false" previousText="&lsaquo;"
+      nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" (numPages)="numberOfPages = $event"
+      [(ngModel)]="queryModel.page" (pageChanged)="onPageChange($event)"></pagination>
+  </div>
+  <div class="alert alert-warning" *ngIf="isLoading">
+    در حال بارگذاری ...
+    <span class="glyphicon glyphicon-refresh glyphicon-spin spinner"></span>
+  </div>
+
+  <!--The Html Template for Read-Only Rows-->
+  <ng-template #readOnlyTemplate let-item let-i="idx">
+    <td class="text-center">{{ queryModel.pageSize * (queryModel.page - 1) + i + 1 }}</td>
+    <td class="text-center">{{ item.ID }}</td>
+    <td class="text-center">{{ item.CategoryName }}</td>
+
+<td>
+      <input type="button" value="ویرایش" class="btn btn-default btn-xs" (click)="editItem(item)"
+      />
+    </td>
+    <td>
+      <input type="button" value="حذف" (click)="deleteItem(item)" class="btn btn-danger btn-xs"
+      />
+    </td>
+  </ng-template>
+
+  <!--The Html Template for Editable Rows-->
+  <ng-template #editTemplate let-item let-i="idx">
+    <td class="text-center">{{ queryModel.pageSize * (queryModel.page - 1) + i + 1 }}</td>
+    <td class="text-center">{{ item.ID }}</td>
+    <td class="text-center">
+      <input type="text" [(ngModel)]="selectedItem.CategoryName" class="form-control" />
+    </td>
+    <td>
+      <input type="button" value="Save" (click)="saveItem()" class="btn btn-success btn-xs"
+      />
+    </td>
+    <td>
+      <input type="button" value="Cancel" (click)="cancel()" class="btn btn-warning btn-xs"
+      />
+    </td>
+  </ng-template>
+
+
+
+
+

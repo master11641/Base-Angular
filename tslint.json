@@ -2,7 +2,15 @@
   "rulesDirectory": [
     "node_modules/codelyzer"
   ],
+  "extends": [
+    "rxjs-tslint-rules"
+  ],  
   "rules": {
+    "rxjs-add": { "severity": "error" },
+    "rxjs-no-patched": { "severity": "error" },
+	"rxjs-no-unused-add": { "severity": "error" },
+    "rxjs-no-wholesale": { "severity": "error" },
+	"rxjs-no-subject-unsubscribe": { "severity": "error" },
     "arrow-return-shorthand": true,
     "callable-types": true,
     "class-name": true,
@@ -31,14 +39,8 @@
     "member-access": false,
     "member-ordering": [
       true,
-      {
-        "order": [
-          "static-field",
-          "instance-field",
-          "static-method",
-          "instance-method"
-        ]
-      }
+      "static-before-instance",
+      "variables-before-functions"
     ],
     "no-arg": true,
     "no-bitwise": true,
@@ -82,11 +84,10 @@
     "prefer-const": true,
     "quotemark": [
       true,
-      "single"
+      "double"
     ],
     "radix": true,
     "semicolon": [
-      true,
       "always"
     ],
     "triple-equals": [

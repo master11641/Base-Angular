@@ -43,3 +43,17 @@ Thumbs.db
 
 .editorconfig
 .vscode
+# Dot Net Codes
+web.config
+/Views
+/Controllers
+/Models
+/Properties
+/.vs
+*.cproj
+*.csproj
+*.sln
+*.cs
+*.bat
+proxy.config.json
+LICENSE.md

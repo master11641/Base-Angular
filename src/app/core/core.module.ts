@@ -1,19 +1,49 @@
-import { AccountModule } from './../account/account.module';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+﻿import { NgModule, SkipSelf, Optional, ErrorHandler, APP_INITIALIZER } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
-import { CoreRoutingModule } from './core-routing.module';
-import { SideBarComponent } from './side-bar/side-bar.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
+import { AppErrorHandler } from "./../app.error-handler";
+import { LoaderInterceptorService } from "./interceptors/loader-interceptor.service";
+import { AppConfigService } from "./app-config.service";
+import { BrowserStorageService } from "./browser-storage.service";
+import { ModalService } from "./modal.service";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    CoreRoutingModule,
-
+  imports: [CommonModule, RouterModule],
+  exports: [
+    // components that are used in app.component.ts will be listed here.
   ],
-  exports: [SideBarComponent, HeaderComponent, FooterComponent],
-  declarations: [SideBarComponent, HeaderComponent, FooterComponent]
+  declarations: [
+    // components that are used in app.component.ts will be listed here.
+  ],
+  providers: [
+    // global singleton services of the whole app will be listed here.
+    ModalService,
+    BrowserStorageService,
+    AppConfigService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptorService,
+      multi: true,
+    },
+    {
+      provide: ErrorHandler,
+      useClass: AppErrorHandler
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (config: AppConfigService) => () => config.loadClientConfig(),
+      deps: [AppConfigService],
+      multi: true
+    }
+  ]
 })
-export class CoreModule { }
+export class CoreModule {
+  constructor( @Optional() @SkipSelf() core: CoreModule) {
+    if (core) {
+      throw new Error("CoreModule should be imported ONLY in AppModule.");
+    }
+  }
+};
+

@@ -1,23 +1,64 @@
-<router-outlet name="onepage"></router-outlet>
-     <div id="wrapper"  >
-      <router-outlet name="header"></router-outlet>
-               <div id="page-wrapper" >
-                   <div class="container-fluid ">
-                       <!-- Page Heading -->
-                       <div class="row">
-                           <div class="col-lg-12 ">
-                                <router-outlet ></router-outlet>
-                           </div>
-                       </div>
+<ng2-slim-loading-bar color="firebrick" height="4px"></ng2-slim-loading-bar>
+<ng2-toasty [position]="'top-right'"></ng2-toasty>
+<!-- <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" [routerLink]="['/']">{{title}}</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li dropdown>
+        <a href dropdownToggle class="dropdown-toggle" (click)="false">
+          Samples
+          <span class="caret"></span>
+        </a>
+        <ul *dropdownMenu class="dropdown-menu" role="menu">
+          <li role="menuitem" routerLinkActive="active">
+            <a class="dropdown-item" [routerLink]="['/register']">Register / Template driven form</a>
+          </li>
+          <li role="menuitem" routerLinkActive="active">
+            <a class="dropdown-item" [routerLink]="['/productCascadingList']">Cascading Drop-downs</a>
+          </li>
+          <li role="menuitem" routerLinkActive="active">
+            <a class="dropdown-item" [routerLink]="['/confirmPassword']">Confirm Password Validator</a>
+          </li>
+          <li role="menuitem" routerLinkActive="active">
+            <a class="dropdown-item" [routerLink]="['/uploadFileSimple']">Upload File Simple</a>
+          </li>
+          <li role="menuitem" routerLinkActive="active">
+            <a class="dropdown-item" [routerLink]="['/ng2FileUploadTest']">Upload File using ng2-file-upload</a>
+          </li>
+          <li role="menuitem" routerLinkActive="active">
+            <a class="dropdown-item" [routerLink]="['/uploadFileWithProgressBar']">Upload File With ProgressBar Using HttpClient</a>
+          </li>
+          <li role="menuitem" routerLinkActive="active">
+            <a [routerLink]="['/typedSha']">Using Third Party Libraries / Typed</a>
+          </li>
+          <li role="menuitem" routerLinkActive="active">
+            <a [routerLink]="['/untypedSha']">Using Third Party Libraries / UnTyped</a>
+          </li>
+          <li role="menuitem" routerLinkActive="active">
+            <a [routerLink]="['/simpleGrid']">Simple Grid</a>
+          </li>
+          <li>
+            <a [routerLink]="['/momentJalaali']">Custom Pipe / moment-jalaali</a>
+          </li>
+          <li>
+            <a [routerLink]="['/showHtml']">Angular Security / Show Html</a>
+          </li>
+          <li>
+            <a [routerLink]="['/showBrowserStorageSample']">Browser Storage Sample</a>
+          </li>
+          <li>
+            <a [routerLink]="['/readAppConfig']">Read config @application startup</a>
+          </li>
+          <li>
+            <a [routerLink]="['/modelStateValidationTest']">Working with ModelState validation errors</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav> -->
 
-                   </div>
-                   <!-- /.container-fluid -->
-               </div>
-               <!-- /#page-wrapper -->
-           </div>
-           <!-- /#wrapper -->
-
-
-
-
+  <router-outlet></router-outlet>
 

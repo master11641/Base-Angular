@@ -1,0 +1,67 @@
+<nav class="navbar navbar-default navbar-fixed-top ">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#myPage">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+
+
+
+
+                          <li class="dropdown ">
+                              <a  class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false"><i  class="fa fa-user"></i>Feature Menues  <b  class="caret"></b></a>
+                              <ul class="dropdown-menu" style="background-color: red;">
+
+                                <li ><a [routerLink]="['/pages','home']"  routerLinkActive="active">صفحه نخست</a></li>
+                                <li ><a [routerLink]="['/pages','pagenotfound']"  routerLinkActive="active">404</a></li>
+                               <li><a [routerLink]="['/admin','products']"  routerLinkActive="active" > محصولات </a></li>
+                               <li><a [routerLink]="['/admin','productcategories']"  routerLinkActive="active" >گروههای محصولات </a></li>
+                               <li ><a  [routerLink]="['/pages','uploadFileSimple']" routerLinkActive="active" >آپلود ساده </a></li>
+                               <li ><a   [routerLink]="['/pages','uploadFileWithProgressBar']" routerLinkActive="active" >آپلود با نمایش پیشرفت </a></li>
+                               <li ><a   [routerLink]="['/pages','simpleModal']" routerLinkActive="active" > Simple Modal </a></li>
+                              </ul>
+                          </li>
+
+
+
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+<!-- Container (About Section) -->
+<div id="about" class="container-fluid">
+  <div class="row">
+    <div class="col-sm-12">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Add Google Maps -->
+
+<footer class="container-fluid text-center">
+  <a href="#myPage" title="To Top">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a>
+  <p>Bootstrap x Made By <a href="https://www.w3schools.com" title="Visit w3schools">www.w3schools.com</a></p>
+</footer>
+
+
+
+
+
+
+

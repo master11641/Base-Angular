@@ -1,114 +1,59 @@
-import { AntivirusLicenceModule } from './antivirus-licence/antivirus-licence.module';
-import { AntivirusTypeModule } from './antivirus-type/antivirus-type.module';
-import { CustomHttp } from './shared/extends/CustomHttp ';
+import { ProductCategoryModule } from './product-category/product-category.module';
+import { FeatureModule } from "./feature/feature.module";
+import { AppConfigService } from "./core/app-config.service";
+import { SharedModule } from "./shared/shared.module";
+import { CoreModule } from "./core/core.module";
+// import RxJs needed operators only once
+import "./shared/rxjs-operators";
 
-import { IdentityService } from './shared/services/identity.service';
-import { MemberShipService } from './member-ship.service';
-import { AppConfigService } from './app.config';
+import { HttpClientModule } from "@angular/common/http";
+import { NgModule } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { BrowserModule } from "@angular/platform-browser";
 
-import { DashboardModule } from './dashboard/dashboard.module';
+import { AngularSecurityModule } from "./angular-security/angular-security.module";
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { CustomPipeModule } from "./custom-pipe/custom-pipe.module";
+import { CustomValidatorsModule } from "./custom-validators/custom-validators.module";
+import { EmployeeModule } from "./employee/employee.module";
 
-
-import { UserOperationsModule } from './user-operations/user-operations.module';
-import { AccountModule } from './account/account.module';
-
-import { NgModule,APP_INITIALIZER  } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { AppComponent } from './app.component';
-
-import { HttpModule } from '@angular/http';
-
-
-import { RouterModule } from '@angular/router';
-
-import { AppRoutingModule } from './app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
-
-import * as momentJalaali from 'moment-jalaali';
-import { CoreModule } from './core/core.module';
-import { AlertModule, CollapseModule } from 'ngx-bootstrap';
-import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
-import { PulicLayoutComponent } from './layout/public/pulic-layout.component';
-import { SecureLayoutComponent } from './layout/secure/secure-layout.component';
-
-
-export class CustomOption extends ToastOptions {
-  animate = 'flyRight'; // you can override any options available
-  newestOnTop = false;
-  showCloseButton = true;
-  positionClass = 'toast-top-center';
-}
-export function init(config: AppConfigService) {
-  return () => {
-    return  config.load(); // add return
-  };
-
-}
-export function initIdentity(_IdentityService: IdentityService) {
-  return () => {
-    return _IdentityService.load(); // add return
-  };
-}
-
+import { ProductModule } from "./product/product.module";
+import { SimpleGridModule } from "./simple-grid/simple-grid.module";
+import { UploadFileModule } from "./upload-file/upload-file.module";
+import { UsingThirdPartyLibrariesModule } from "./using-third-party-libraries/using-third-party-libraries.module";
+import { WelcomeComponent } from "./welcome/welcome.component";
+import { BrowserStorageSampleModule } from "./browser-storage-sample/browser-storage-sample.module";
+import { ReadAppConfigModule } from "./read-app-config/read-app-config.module";
+import { ModelStateValidationModule } from "./model-state-validation/model-state-validation.module";
+import { FroalaEditorModule, FroalaViewModule } from "angular-froala-wysiwyg";
+import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
 @NgModule({
+  declarations: [AppComponent, WelcomeComponent, ModalDialogComponent],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
-    AppRoutingModule,
-    ReactiveFormsModule,
-    AccountModule.forRoot(),
+    HttpClientModule,
     CoreModule,
 
-    AlertModule.forRoot(),
-    CollapseModule.forRoot(),
-    UserOperationsModule,
-AntivirusTypeModule,
-AntivirusLicenceModule,
-
-    DashboardModule,
-    ToastModule.forRoot(),
-
+    SharedModule.forRoot(),
+    EmployeeModule,
+    ProductModule,
+    CustomValidatorsModule,
+    UploadFileModule,
+    UsingThirdPartyLibrariesModule,
+    SimpleGridModule,
+    CustomPipeModule,
+    ProductCategoryModule,
+    AngularSecurityModule,
+    BrowserStorageSampleModule,
+    ReadAppConfigModule,
+    ModelStateValidationModule,
+    AppRoutingModule,
+    FeatureModule,
+    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot() ,
   ],
-  declarations: [
-    AppComponent,
-
-
-    PulicLayoutComponent,
-    SecureLayoutComponent,
-
-
-  ],
-  providers: [
-CustomHttp,
-
-    {
-      provide: APP_INITIALIZER,
-      useFactory: init,
-      multi: true,
-      deps: [AppConfigService]
-    },
-  {
-    provide: APP_INITIALIZER,
-    useFactory: initIdentity,
-    multi: true,
-    deps: [IdentityService]
-  },
-  AppConfigService,
-  IdentityService,
-     { provide: ToastOptions, useClass: CustomOption }
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
-
-export class AppModule { }
-
-
-/*
-Copyright 2017 Google Inc. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://angular.io/license
-*/
-
-
+export class AppModule {}
