@@ -10,6 +10,8 @@ import { ProductsListComponent } from "./products-list/products-list.component";
 import { ProductsListService } from "./products-list.service";
 
 import { PaginationModule } from "ngx-bootstrap";
+import { SharedModule } from "../shared/shared.module";
+
 
 @NgModule({
   imports: [
@@ -20,7 +22,9 @@ import { PaginationModule } from "ngx-bootstrap";
     CustomPipeModule,
     FormsModule,
     PaginationModule.forRoot(),
-    SimpleGridRoutingModule
+    SimpleGridRoutingModule,
+    SharedModule
+
   ],
   declarations: [ProductsListComponent],
   providers: [ProductsListService]

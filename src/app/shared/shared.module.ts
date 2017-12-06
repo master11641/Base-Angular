@@ -1,12 +1,15 @@
-﻿import { ConfirmModalComponent } from "./confirm-modal/confirm-modal.component";
-import { NgModule, ModuleWithProviders } from "@angular/core";
+﻿
+import { ConfirmModalComponent } from "./confirm-modal/confirm-modal.component";
+import { NgModule, ModuleWithProviders,EventEmitter } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 import { ToastyModule } from "ng2-toasty";
 import { BsDropdownModule } from "ngx-bootstrap";
 import { SlimLoadingBarModule } from "ng2-slim-loading-bar";
-import { FileUploadModule } from "ng2-file-upload";
+import { FileUploadModule, FileUploader } from "ng2-file-upload";
 import { SharedBootstrapModule } from "./shared.bootstrap.module";
+import { FileUploaderComponent } from "./file-uploader/file-uploader.component";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   imports: [
@@ -15,12 +18,14 @@ import { SharedBootstrapModule } from "./shared.bootstrap.module";
     BsDropdownModule.forRoot(),
     SlimLoadingBarModule.forRoot(),
     FileUploadModule,
-    SharedBootstrapModule
+    SharedBootstrapModule,
+    FormsModule
+
   ],
-  entryComponents: [ConfirmModalComponent],
+  entryComponents: [ConfirmModalComponent,FileUploaderComponent],
   declarations: [
     // common and shared components/directives/pipes between more than one module and components will be listed here.
-    ConfirmModalComponent
+    ConfirmModalComponent,FileUploaderComponent
   ],
   exports: [
     CommonModule,
@@ -28,7 +33,9 @@ import { SharedBootstrapModule } from "./shared.bootstrap.module";
     BsDropdownModule,
     SlimLoadingBarModule,
     FileUploadModule,
-    SharedBootstrapModule
+    SharedBootstrapModule,
+    FileUploaderComponent
+
   ] // common and shared components/directives/pipes between more than one module and components will be listed here.
   /* No providers here! Since they’ll be already provided in AppModule. */
 })

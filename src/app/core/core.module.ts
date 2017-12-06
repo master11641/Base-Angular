@@ -1,4 +1,11 @@
-﻿import { NgModule, SkipSelf, Optional, ErrorHandler, APP_INITIALIZER } from "@angular/core";
+﻿import { FileUploaderService } from "./file-uploader.service";
+import {
+  NgModule,
+  SkipSelf,
+  Optional,
+  ErrorHandler,
+  APP_INITIALIZER
+} from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
@@ -19,13 +26,14 @@ import { ModalService } from "./modal.service";
   ],
   providers: [
     // global singleton services of the whole app will be listed here.
+    FileUploaderService,
     ModalService,
     BrowserStorageService,
     AppConfigService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoaderInterceptorService,
-      multi: true,
+      multi: true
     },
     {
       provide: ErrorHandler,
@@ -40,10 +48,13 @@ import { ModalService } from "./modal.service";
   ]
 })
 export class CoreModule {
-  constructor( @Optional() @SkipSelf() core: CoreModule) {
+  constructor(
+    @Optional()
+    @SkipSelf()
+    core: CoreModule
+  ) {
     if (core) {
       throw new Error("CoreModule should be imported ONLY in AppModule.");
     }
   }
-};
-
+}

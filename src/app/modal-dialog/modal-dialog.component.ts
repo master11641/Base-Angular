@@ -8,13 +8,16 @@ import { BsModalRef, BsModalService } from "ngx-bootstrap";
   templateUrl: "./modal-dialog.component.html",
   styleUrls: ["./modal-dialog.component.css"]
 })
-export class ModalDialogComponent implements OnInit {
+export class ModalDialogComponent  {
   modalRef: BsModalRef;
   confirmResult: string;
+  fileName:string;
   constructor(
     private modalService: BsModalService,
     private customModalService: ModalService
-  ) {}
+  ) {
+
+  }
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, {
@@ -53,4 +56,6 @@ export class ModalDialogComponent implements OnInit {
         }
       });
   }
+
+
 }

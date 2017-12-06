@@ -1,7 +1,5 @@
 <h1>Displaying modal bootstrap dialogs</h1>
-
 <button type="button" class="btn btn-info" (click)="openModal(template1)">Create template modal</button>
-
 <ng-template #template1>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Modal</h4>
@@ -14,6 +12,9 @@
   </div>
 </ng-template>
 
-
 <button type="button" class="btn btn-danger" (click)="deleteRecord()">Delete record</button>
 <div *ngIf="confirmResult" class="alert alert-info">{{confirmResult}}</div>
+
+<app-file-uploader [(fileName)]="fileName" [showProgress]="true" [autoUpload]="true" ></app-file-uploader>
+<h2>آدرس فایل آپلود شده :</h2>
+{{fileName}}

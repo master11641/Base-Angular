@@ -1,3 +1,4 @@
+import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from "@angular/forms";
 import { CustomPipeModule } from "../custom-pipe/custom-pipe.module";
 import { FroalaViewModule } from "angular-froala-wysiwyg";
@@ -20,7 +21,8 @@ import { PaginationModule } from "ngx-bootstrap/pagination/pagination.module";
     FroalaViewModule.forRoot(),
     CustomPipeModule,
     FormsModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
+    SharedModule
   ],
   declarations: [ProductCategoryListComponent],
   providers: [ProductCategoryService]

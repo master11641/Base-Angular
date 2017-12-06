@@ -72,7 +72,7 @@
       nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" (numPages)="numberOfPages = $event"
       [(ngModel)]="queryModel.page" (pageChanged)="onPageChange($event)"></pagination>
   </div>
-  <div class="alert alert-warning" *ngIf="isLoading">
+  <div class="loading" *ngIf="isLoading">
     در حال بارگذاری ...
     <span class="glyphicon glyphicon-refresh glyphicon-spin spinner"></span>
   </div>
@@ -100,14 +100,14 @@
   </ng-template>
 
   <!--The Html Template for Editable Rows-->
-  <ng-template #editTemplate let-item let-i="idx">
+  <ng-template #editTemplate let-item let-i="idx" >
     <td class="text-center">{{ queryModel.pageSize * (queryModel.page - 1) + i + 1 }}</td>
-    <td class="text-center">{{ item.ProductId }}</td>  
+    <td class="text-center">{{ item.ProductId }}</td>
     <td class="text-center">
-      <input type="text" [(ngModel)]="selectedItem.ProductName" class="form-control" />
+      <input type="text" [(ngModel)]="selectedItem.ProductName"  class="form-control" />
     </td>
     <td class="text-center">
-      <input type="text" [(ngModel)]="selectedItem.Price" class="form-control" />
+      <input type="text" [(ngModel)]="selectedItem.Price"   class="form-control" />
     </td>
     <td class="text-center">
       <input id="item-{{ item.productId }}" type="checkbox" [checked]="item.IsAvailable"
@@ -122,7 +122,7 @@
     </td>
     <td>
       <input type="button" value="Save" (click)="saveItem()" class="btn btn-success btn-xs"
-      />
+        />
     </td>
     <td>
       <input type="button" value="Cancel" (click)="cancel()" class="btn btn-warning btn-xs"
@@ -134,5 +134,5 @@
 
 
 
-<dp-date-picker  dir="rtl" [(ngModel)]="dateTest" mode="day"  theme="dp-material"></dp-date-picker>
+
 
