@@ -26,9 +26,11 @@ import { FileUploaderService } from "../../core/file-uploader.service";
 })
 export class FileUploaderComponent implements OnInit {
   @Input() fileName: string;
+  @Input() fileNames: Array<string>;
   @Input() autoUpload:boolean=true;
   @Input() showProgress:boolean=true;
   @Output() fileNameChange = new EventEmitter();
+  @Output() fileNamesChange = new EventEmitter();
   @ViewChild("screenshotInput") screenshotInput: ElementRef;
 
 
@@ -45,7 +47,7 @@ export class FileUploaderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
+this.fileNames=new Array<string>();
   }
 
   fileChange(event) {
@@ -91,11 +93,13 @@ this.submitForm();
             this.isUploading = false;
             console.log("Done! ResponseBody:", event.body);
             this.fileName = event.body;
+            this.fileNames.push(this.fileName);
             this.fileNameChange.emit(this.fileName);
+            this.fileNamesChange.emit(this.fileNames);
             this.toastyService.success(<ToastOptions>{
               title: "Success!",
               msg:
-                "Your ticket has been submitted successfully and will be resolved shortly!",
+                "آپلود با موفقیت انجام شد .",
               theme: "bootstrap",
               showClose: true,
               timeout: 15000

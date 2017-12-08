@@ -1,0 +1,72 @@
+<table class="table  borderless">
+  <tr>
+    <td>
+نام محصول
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="AppProduct.ProductName"  class="form-control" />
+    </td>
+  </tr>
+  <tr>
+      <td>
+موجود بودن کالا
+      </td>
+      <td>
+          <input type="checkbox" [checked]="AppProduct.IsAvailable"
+          [(ngModel)]="AppProduct.IsAvailable" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+توضیحات کامل
+      </td>
+      <td>
+        <div [froalaEditor] [(ngModel)]="AppProduct.Description" ></div>
+      </td>
+    </tr>
+    <tr>
+        <td>
+تاریخ شروع نمایش
+        </td>
+        <td>
+            <dp-date-picker   dir="rtl" [(ngModel)]="AppProduct.ShowFromDate  " mode="day"  theme="dp-material"></dp-date-picker>
+        </td>
+      </tr>
+      <tr>
+          <td>
+قیمت کالا
+          </td>
+          <td>
+            <input type="text" [(ngModel)]="AppProduct.Price"   class="form-control" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+
+          </td>
+          <td>
+            <app-file-uploader  [showProgress]="true" [autoUpload]="true" [(fileNames)]="fileNames" ></app-file-uploader>
+
+            <h2>آرایه فایلهای آپلود شده</h2>
+            {{fileNames | json}}
+          </td>
+        </tr>
+        <tr>
+            <td>
+
+            </td>
+            <td>
+<button type="button" (click)="saveItem()" >ذخیره </button>
+            </td>
+          </tr>
+
+</table>
+
+<pre style="direction:ltr;text-align :left;">
+  {{AppProduct | json}}
+</pre>
+
+
+
+
+

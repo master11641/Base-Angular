@@ -1,3 +1,4 @@
+import { ProductImage } from './product-image';
 
 export class AppProduct {
   constructor(
@@ -7,6 +8,7 @@ export class AppProduct {
     public IsAvailable: boolean,
     public Description:string,
     public ShowFromDate:any,
-    public CaegoryId:number
+    public CaegoryId:number,
+    public ProductImages:ProductImage[]
   ) {}
 }

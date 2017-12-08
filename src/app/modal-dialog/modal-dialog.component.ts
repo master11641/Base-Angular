@@ -12,6 +12,7 @@ export class ModalDialogComponent  {
   modalRef: BsModalRef;
   confirmResult: string;
   fileName:string;
+  fileNames:Array<string>;
   constructor(
     private modalService: BsModalService,
     private customModalService: ModalService

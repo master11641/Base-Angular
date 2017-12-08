@@ -1,3 +1,4 @@
+
 import { Component, OnInit, TemplateRef, ViewChild } from "@angular/core";
 
 import { ProductsListService } from "./../products-list.service";
@@ -6,8 +7,12 @@ import { PagedQueryResult } from "./../paged-query-result";
 import { AppProduct } from "./../app-product";
 import { GridColumn } from "./../grid-column";
 
+
 import { ToastyService, ToastOptions } from "ng2-toasty";
 import * as moment from "jalali-moment";
+import { ProductImage } from "../product-image";
+declare var jquery: any;
+declare var $: any;
 @Component({
   selector: "app-products-list",
   templateUrl: "./products-list.component.html",
@@ -18,7 +23,7 @@ export class ProductsListComponent implements OnInit {
   numberOfPages: number;
   isLoading = false;
   // dateTest = moment("1367/11/04","jYYYY/jMM/jD");
-  dateTest = moment("2017-11-30T20:30:00Z").locale('fa');
+   dateTest = moment("2017-11-30T20:30:00Z").locale('fa');
   queryModel = new PagedQueryModel("productId", true, 1, 10, "", "");
   queryResult = new PagedQueryResult<AppProduct>(0, []);
   columns: GridColumn[] = [
@@ -38,7 +43,20 @@ export class ProductsListComponent implements OnInit {
   constructor(
     private productsService: ProductsListService,
     private toastyService: ToastyService
-  ) {}
+
+  ) {
+
+    this.selectedItem = new AppProduct(
+      0,
+      "",
+      0,
+      false,
+      "",
+      moment(new Date()).locale('fa'),
+      1,
+      new Array<ProductImage>()
+    );
+  }
 
   ngOnInit() {
     this.getPagedProductsList();
@@ -46,6 +64,7 @@ export class ProductsListComponent implements OnInit {
 
   private getPagedProductsList() {
     this.isLoading = true;
+   // this.selectedItem=null;
     this.productsService
       .getPagedProductsList(this.queryModel)
       .subscribe(result => {
@@ -73,6 +92,7 @@ export class ProductsListComponent implements OnInit {
   editItem(item: AppProduct) {
     console.log(item);
     this.selectedItem = item;
+    $('.nav-tabs a[href="#edit"]').tab('show');
   }
 
   deleteItem(item: AppProduct) {
@@ -134,7 +154,7 @@ export class ProductsListComponent implements OnInit {
   }
 
   addItem() {
-    this.selectedItem = new AppProduct(0, "", 0, false, "", moment(new Date()).locale("fa"),1);
+    this.selectedItem = new AppProduct(0, "", 0, false, "", moment(new Date()).locale("fa"),1,new Array<ProductImage>());
     console.log(new Date());
     this.isNewRecord = true;
 
@@ -143,11 +163,12 @@ export class ProductsListComponent implements OnInit {
   }
 
   loadTemplate(item: AppProduct) {
-    if (this.selectedItem && this.selectedItem.ProductId === item.ProductId) {
-      return this.editTemplate;
-    } else {
-      return this.readOnlyTemplate;
-    }
+    // if (this.selectedItem && this.selectedItem.ProductId === item.ProductId) {
+    //   return this.editTemplate;
+    // } else {
+    //   return this.readOnlyTemplate;
+    // }
+    return this.readOnlyTemplate;
   }
 
   doFilter() {
@@ -166,4 +187,6 @@ export class ProductsListComponent implements OnInit {
     this.queryModel.page = 1;
     this.getPagedProductsList();
   }
+
+
 }

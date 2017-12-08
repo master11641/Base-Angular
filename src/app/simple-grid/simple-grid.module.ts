@@ -11,7 +11,7 @@ import { ProductsListService } from "./products-list.service";
 
 import { PaginationModule } from "ngx-bootstrap";
 import { SharedModule } from "../shared/shared.module";
-
+import { ProductEditComponent } from "./product-edit/product-edit.component";
 
 @NgModule({
   imports: [
@@ -24,9 +24,8 @@ import { SharedModule } from "../shared/shared.module";
     PaginationModule.forRoot(),
     SimpleGridRoutingModule,
     SharedModule
-
   ],
-  declarations: [ProductsListComponent],
+  declarations: [ProductsListComponent, ProductEditComponent],
   providers: [ProductsListService]
 })
 export class SimpleGridModule {}

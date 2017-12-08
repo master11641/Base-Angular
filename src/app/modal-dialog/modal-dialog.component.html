@@ -15,6 +15,8 @@
 <button type="button" class="btn btn-danger" (click)="deleteRecord()">Delete record</button>
 <div *ngIf="confirmResult" class="alert alert-info">{{confirmResult}}</div>
 
-<app-file-uploader [(fileName)]="fileName" [showProgress]="true" [autoUpload]="true" ></app-file-uploader>
+<app-file-uploader [(fileName)]="fileName" [showProgress]="true" [autoUpload]="true" [(fileNames)]="fileNames" ></app-file-uploader>
 <h2>آدرس فایل آپلود شده :</h2>
 {{fileName}}
+<h2>آرایه فایلهای آپلود شده</h2>
+{{fileNames | json}}

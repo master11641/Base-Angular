@@ -1,3 +1,4 @@
+
 import { ProductCategory } from "./../product-category";
 import { ProductCategoryService } from "../product-category.service";
 import { GridColumn } from "./../../simple-grid/grid-column";
@@ -8,6 +9,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from "@angular/core";
 
 import { ToastyService, ToastOptions } from "ng2-toasty";
 import * as moment from "jalali-moment";
+import { ProductImage } from "../../simple-grid/product-image";
 
 @Component({
   selector: "app-product-category-list",
@@ -20,11 +22,16 @@ export class ProductCategoryListComponent implements OnInit {
   isLoading = false;
   // dateTest = moment("1367/11/04","jYYYY/jMM/jD");
   dateTest = moment("2017-11-30T20:30:00Z").locale("fa");
-  queryModel = new PagedQueryModel("productId", true, 1, 10, "", "");
+  queryModel = new PagedQueryModel("ID", true, 1, 10, "", "");
   queryResult = new PagedQueryResult<ProductCategory>(0, []);
   columns: GridColumn[] = [
-    new GridColumn("شناسه", "ID", true),
-    new GridColumn("عنوان گروه محصول", "CategoryName", true)
+
+  new GridColumn("ID", "ID", true),
+
+
+  new GridColumn("CategoryName", "CategoryName", true),
+
+
   ];
 
   @ViewChild("readOnlyTemplate") readOnlyTemplate: TemplateRef<any>;
@@ -130,7 +137,7 @@ export class ProductCategoryListComponent implements OnInit {
     this.selectedItem = new ProductCategory(
       0,
       "",
-      new AppProduct(0, "", 0, false, "", moment(new Date()).locale("fa"), 1)
+      new AppProduct(0, "", 0, false, "", moment(new Date()).locale("fa"), 1,new Array<ProductImage>())
     );
     console.log(new Date());
     this.isNewRecord = true;
@@ -164,3 +171,5 @@ export class ProductCategoryListComponent implements OnInit {
     this.getPagedProductsList();
   }
 }
+
+
