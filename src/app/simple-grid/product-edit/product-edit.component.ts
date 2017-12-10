@@ -1,12 +1,14 @@
+import { ProductImage } from './../product-image';
 import { ProductsListService } from "../products-list.service";
 import { ToastyService, ToastOptions } from "ng2-toasty";
-import { ProductImage } from "../product-image";
+
 import { AppProduct } from "./../app-product";
-import { Component, OnInit, Input, Output, EventEmitter  } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild  } from "@angular/core";
 
 declare var jquery: any;
 declare var $: any;
 import * as moment from "jalali-moment";
+
 @Component({
   selector: "app-product-edit",
   templateUrl: "./product-edit.component.html",
@@ -16,6 +18,7 @@ export class ProductEditComponent implements OnInit {
   @Input() AppProduct: AppProduct;
   @Input() isNewRecord: boolean;
   @Output() dataBind = new EventEmitter();
+fileName:string;
   fileNames: Array<string>;
   constructor(
     private productsService: ProductsListService,
@@ -37,21 +40,7 @@ export class ProductEditComponent implements OnInit {
   ngOnInit() {}
   saveItem() {
     this.AppProduct.Price = +this.AppProduct.Price;
-    console.log(this.AppProduct);
-    console.log(this.fileNames);
-    if (!this.AppProduct.ProductImages) {
-      this.AppProduct.ProductImages = new Array<ProductImage>();
-    }
-    this.fileNames.forEach(fileName => {
-      const pi = new ProductImage();
-      pi.ID = 0;
-      pi.ImageUrl = fileName;
-      pi.ProductId = this.AppProduct.ProductId;
-
-      this.AppProduct.ProductImages.push(pi);
-    });
-
-    if (this.isNewRecord) {
+      if (this.isNewRecord) {
       this.productsService
         .addAppProduct(this.AppProduct)
         .subscribe((resp: AppProduct) => {
@@ -83,5 +72,17 @@ export class ProductEditComponent implements OnInit {
         });
         $('.nav-tabs a[href="#home"]').tab('show');
     }
+  }
+  fileUploadComponent(){
+
+    if (!this.AppProduct.ProductImages) {
+      this.AppProduct.ProductImages = new Array<ProductImage>();
+    }
+      const pi = new ProductImage();
+      pi.ID = 0;
+      pi.ImageUrl =this.fileName;
+      pi.ProductId = this.AppProduct.ProductId;
+      this.AppProduct.ProductImages.push(pi);
+
   }
 }

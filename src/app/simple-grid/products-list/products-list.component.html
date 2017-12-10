@@ -28,7 +28,8 @@
   <ul class="nav nav-tabs" >
       <li class="active"><a data-toggle="tab" href="#home"> لیست محصولات</a></li>
       <li><a data-toggle="tab" href="#edit">
-      مدیریت رکورد جاری
+        <span *ngIf="selectedItem.ProductId==0">افزودن</span>
+        <span *ngIf="selectedItem.ProductId!=0">ویرایش</span>
       </a></li>
     </ul>
 
@@ -150,7 +151,7 @@
       </div>
       <div id="edit" class="tab-pane fade" >
         <div class="container-fluid">
-                <app-product-edit [AppProduct]="selectedItem" [isNewRecord]="isNewRecord" (dataBind)="getPagedProductsList()"   ></app-product-edit>
+                <app-product-edit [AppProduct]="selectedItem" [isNewRecord]="isNewRecord" (dataBind)="getPagedProductsList()"  ></app-product-edit>
         </div>
 
       </div>

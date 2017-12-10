@@ -44,10 +44,13 @@ export class FileUploaderComponent implements OnInit {
   constructor(
     private uploadService: FileUploaderService,
     private toastyService: ToastyService
-  ) {}
+  ) {
+    this.fileNames=new Array<string>();
+  }
+
 
   ngOnInit() {
-this.fileNames=new Array<string>();
+
   }
 
   fileChange(event) {
