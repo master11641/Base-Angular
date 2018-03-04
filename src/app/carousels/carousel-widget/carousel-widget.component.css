@@ -1,0 +1,13 @@
+.carousel img{
+  width:100%;
+}
+.carousel-control.right, .carousel-control.left {
+  background-image: none;
+  color: #0c91ba;
+}
+.carousel-indicators li {
+  border-color: #0c91ba;
+}
+.carousel-indicators li.active {
+  background-color: #0c91ba;
+}

@@ -1,4 +1,6 @@
-﻿import { FileUploaderService } from "./file-uploader.service";
+﻿import { ChatService } from "./services/chat.service";
+import { AuthInterceptor } from "./services/auth.interceptor";
+import { FileUploaderService } from "./file-uploader.service";
 import {
   NgModule,
   SkipSelf,
@@ -15,6 +17,11 @@ import { LoaderInterceptorService } from "./interceptors/loader-interceptor.serv
 import { AppConfigService } from "./app-config.service";
 import { BrowserStorageService } from "./browser-storage.service";
 import { ModalService } from "./modal.service";
+import { APP_CONFIG, AppConfig } from "./services/app.config";
+import { AuthService } from "./services/auth.service";
+import { AuthGuard } from "app/core/services/auth.guard";
+import { WebsocketService } from "app/core/services/websocket.service";
+// import RxJs needed operators only once
 
 @NgModule({
   imports: [CommonModule, RouterModule],
@@ -26,10 +33,18 @@ import { ModalService } from "./modal.service";
   ],
   providers: [
     // global singleton services of the whole app will be listed here.
+    WebsocketService,
+    ChatService,
+    AuthGuard,
     FileUploaderService,
     ModalService,
     BrowserStorageService,
     AppConfigService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: LoaderInterceptorService,
@@ -44,7 +59,9 @@ import { ModalService } from "./modal.service";
       useFactory: (config: AppConfigService) => () => config.loadClientConfig(),
       deps: [AppConfigService],
       multi: true
-    }
+    },
+    AuthService,
+    { provide: APP_CONFIG, useValue: AppConfig }
   ]
 })
 export class CoreModule {

@@ -1,0 +1,84 @@
+<!-- <section  *ngIf="isLoggedIn===true">
+  <div class="container"> -->
+      <form #form="ngForm" *ngIf="!popupOn" class="form-inline" (submit)="submitForm()" novalidate id="signInFrm" name="signInFrm"   >
+
+          <!-- <label for="To"  >  </label> -->
+
+          <!-- <select [(ngModel)]="Message.To" id="selectTo" name="selectTo"   autocomplete="off"  >
+            <option *ngFor="let user of onlineUsers;let i = index" [value]="user" >
+              {{user}}
+            </option>
+          </select> -->
+
+
+          <button *ngIf="onlineUsers.length!=0"  #submitBtn type="submit" class="btn btn-primary" [disabled]="form.invalid "> <i class="fa fa-comment"></i>  پشتیبانی آنلاین </button>
+          <button  *ngIf="onlineUsers.length==0" [routerLink]="['/pages','contactus']"   type="button" class="btn btn-danger" [disabled]="form.invalid "> <i class="fa fa-comment"></i> پیام بگذارید  </button>
+        </form>
+
+
+
+<div class="popup-box chat-popup popup-box-on"   *ngFor="let p of personInChat"  >
+            <div class="popup-head">
+          <div class="popup-head-left pull-left" style="font-size: 10px;" >
+            <!-- <img src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg" alt="iamgurdeeposahan">{{p}} -->
+            {{p}}
+          </div>
+              <div class="popup-head-right pull-right">
+              <div class="btn-group">
+                        <button [class]="(IsConnected===true)? 'chat-header-button online' : 'chat-header-button offline'"  data-toggle="dropdown" type="button" aria-expanded="false">
+                       <!-- <i  *ngIf="IsConnected" style="color: yellow;" class="fa fa-2x  fa-circle"></i>
+                       <i  *ngIf="!IsConnected" style="color: gray;" class="fa fa-2x  fa-circle"></i> -->
+                      </button>
+                      <ul role="menu" class="dropdown-menu pull-right">
+                      <!-- <li><a href="#">Media</a></li>
+                      <li><a href="#">Block</a></li>
+                      <li><a href="#">Clear Chat</a></li>
+                      <li><a href="#">Email Chat</a></li> -->
+                      </ul>
+              </div>
+
+              <button data-widget="remove" id="removeClass" (click)="removeChat(p)"   class="chat-header-button pull-right" type="button"><i class="glyphicon glyphicon-off"></i></button>
+                        </div>
+          </div>
+        <div class="popup-messages">
+
+        <div class="direct-chat-messages"   *ngFor="let msg of filterChatsByPersonInChat(p);let i = index" >
+
+
+            <div class="chat-box-single-line">
+                  <abbr class="timestamp">{{msg.SendDate| momentJalaali:'jYYYY/jMM/jDD hh:mm:ss'}}</abbr>
+            </div>
+
+
+            <!-- Message. Default to the left -->
+                      <div class="direct-chat-msg doted-border">
+                        <div class="direct-chat-info clearfix">
+                          <span class="direct-chat-name pull-left"> {{msg.From}} می گوید :</span>
+                        </div>
+                        <!-- /.direct-chat-info -->
+                      <i class="fa fa-2x fa-user"></i>
+                        <div class="direct-chat-text">
+                            {{msg.MessageBody}}
+                        </div>
+              <div class="direct-chat-info clearfix">
+                          <span class="direct-chat-timestamp pull-right"> به: {{msg.To}}</span>
+                        </div>
+              <div class="direct-chat-info clearfix">
+              <span class="direct-chat-img-reply-small pull-left">
+
+              </span>
+
+              </div>                        <!-- /.direct-chat-text -->
+                      </div>
+                      <!-- /.direct-chat-msg -->
+                    </div>
+        </div>
+        <div class="popup-messages-footer">
+        <app-chat-widget [To]="p" [From]="Message.From" (SendMsgHandler)="sendMsg($event)"></app-chat-widget>
+        </div>
+      </div>
+
+
+
+
+

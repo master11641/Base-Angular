@@ -1,0 +1,215 @@
+body{
+  line-height: 30px;
+  text-align: justify;
+}
+.carousel img{
+  width:100%;
+}
+.middle-wrapper{
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+}
+#services{
+  background-image: url('/assets/Images/Services.png') ;
+  background-repeat: repeat-x;
+  background-color: #434343;
+  min-height: 400px;
+padding-bottom: 35px;
+}
+#services .leftsection{
+  text-align: center;
+}
+#services .leftsection h1{
+  font-family: 'dinbold';
+  color:#0c91ba;
+  font-size: 30px;
+  line-height: 50px;
+}
+#services .rightsection{
+  color:white;
+padding-top: 30px;
+line-height: 30px;
+text-align: justify;
+}
+
+#services img{
+  position:relative;
+    top:-25px;
+    right:50%;
+    width:50px;
+    height:50px;
+  }
+
+  #fullwidth .rightsection{
+    background-image: url('/assets/Images/Porseshpasokh.png');
+    background-repeat: no-repeat;
+
+background-position-x: center;
+padding-bottom: 35px;
+  }
+  #fullwidth .rightsection h1{
+    font-family: 'dinbold';
+    font-size: 30px;
+    line-height: 50px;
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 150px;
+  }
+  #fullwidth .rightsection p{
+    position: relative;
+    width: 38%;
+    margin: 0 auto;
+    padding-top: 30px;
+    text-align: justify;
+    font-size: 20px;
+  }
+  #fullwidth .rightsection button{
+
+    background-color: black;
+    border-radius: 25px;
+    color: white;
+   width: 150px;
+   padding-bottom: 10px;
+   right: 50%;
+   margin-right: 40%;
+   margin-top: 30px;
+  }
+  #fullwidth .rightsection div{
+    margin: 20px auto;
+    width:50px;
+  }
+  @media screen and (min-width: 768px) {
+    #fullwidth .rightsection h1{
+      width: 20%;
+    }
+  }
+  @media screen and ( max-width: 600px) {
+    #fullwidth .rightsection h1{
+      width: 70%;
+    }
+    #fullwidth .rightsection button{
+      margin-right: 35%;
+    }
+  }
+  @media screen and (max-width: 400px) {
+    #fullwidth .rightsection h1{
+      width: 70%;
+    }
+    #fullwidth .rightsection button{
+      margin-right: 28%;
+    }
+    #fullwidth .rightsection h1{
+
+      margin-top: 30px;
+    }
+  }
+#fullwidth .leftsection{
+  background-color: #383838;
+
+}
+
+
+  .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(225, 220, 216, 0.89);
+    overflow: hidden;
+    width: 100%;
+    height: 50px;
+    transition: .5s ease;
+    transition-property:  height;
+    text-align: center;
+   vertical-align: middle;
+}
+.overlay a{
+  font-family: 'dinbold';
+  color: #414141;
+  position: relative;
+  top: 50%;
+
+}
+
+div:hover {
+  height: 100%;
+}
+   /* دو استایل ذیل به دلیل ایجاد کردن شفافیت در پس زمینه دایو پیمنت و جلوگیری از غلیه رنگ تصویر پس زمینه بر رنگ پس زمینه دایو شد */
+#payment{
+
+  position: relative;
+  text-align: center;
+  background-color: black;
+  min-height: 400px;
+  color: white;
+  overflow: hidden;
+  line-height: 20px;
+  padding-top: 35px;
+  padding-bottom: 35px;
+
+  background-image: url('/assets/Images/Pardakhtonline.png');
+  background-repeat:repeat-x;
+  background-position: 50% 0;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+}
+/* #payment::after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  opacity: 0.2;
+  background-image: url('/assets/Images/Pardakhtonline.png');
+  background-repeat:repeat-x;
+  background-position: 50% 0;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+} */
+   /* تا اینجا */
+   #payment p{
+margin-top: 35px;
+   }
+   #payment button{
+     margin-top: 35px;
+     border-radius: 25px;
+     background-color: white;
+     color: black;
+     padding-bottom: 10px;
+     width: 150px;
+     font-family: 'dinbold';
+     font-size: 18px;
+   }
+#contact{
+  background-color: white;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: right;
+}
+#contact h1{
+  font-family: 'dinbold';
+  font-size: 30px;
+  margin-bottom: 30px;
+
+}
+#contact p{
+ text-align: justify;
+}
+.chatrow{
+  bottom: 0px;
+  position: absolute;
+  right: 0px;
+  width:100%;
+
+}

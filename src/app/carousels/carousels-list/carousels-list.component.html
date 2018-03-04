@@ -1,0 +1,181 @@
+
+
+<div class="panel">
+
+  <input type = "button" value = "افزودن " class="btn btn-primary" (click)="addItem()" />
+
+</div>
+
+
+<div>
+
+
+  <table class="table table-striped table-hover table-bordered table-condensed" >
+
+    <thead>
+
+      <tr>
+
+        <th class="text-center" style="width:3%">#</th>
+
+        <th *ngFor="let column of columns" class="text-center">
+
+          <div *ngIf="column.isSortable" (click)="sortBy(column.propertyName)" style="cursor: pointer">
+
+            {{ column.title }}
+
+            <i *ngIf="queryModel.sortBy === column.propertyName" class="glyphicon" [class.glyphicon-sort-by-order]="queryModel.isAscending"
+
+              [class.glyphicon-sort-by-order-alt]="!queryModel.isAscending"></i>
+
+          </div>
+
+          <div *ngIf="!column.isSortable" style="cursor: pointer">
+
+             {{ column.title }}
+
+          </div>
+
+        </th>
+
+        <th style="width:3%"></th>
+
+        <th style="width:3%"></th>
+
+      </tr>
+
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let item of queryResult.items; let i = index">
+
+        <ng-container [ngTemplateOutlet]="loadTemplate(item)" [ngTemplateOutletContext]="{ $implicit: item, idx: i }"></ng-container>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+
+ <!-- http://valor-software.com/ngx-bootstrap/#/pagination -->
+  <div align="center">
+
+    <div class="row alert alert-info">
+
+      <div class="col-md-6">
+
+        <div class="col-md-5">
+
+          <label>تعداد ردیف ها در هر صفحه: </label>
+
+        </div>
+
+        <div class="col-md-7">
+
+          <select class="form-control" name="itemsNumber" [(ngModel)]="queryModel.pageSize"
+
+            (change)="resetPageSize()">
+
+            <option *ngFor="let item of itemsPerPage" [value]="item">
+
+              {{ item }}
+
+            </option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+      <div class="col-md-6 ">
+
+        صفحه: {{queryModel.page}} / {{numberOfPages}}, کل رکوردها: {{queryResult.totalItems}}
+
+      </div>
+
+    </div>
+
+    <pagination [maxSize]="8" [boundaryLinks]="true" [totalItems]="queryResult.totalItems"
+
+      [itemsPerPage]="queryModel.pageSize" [rotate]="false" previousText="&lsaquo;"
+
+      nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;" (numPages)="numberOfPages = $event"
+
+      [(ngModel)]="queryModel.page" (pageChanged)="onPageChange($event)"></pagination>
+
+  </div>
+
+  <div class="alert alert-warning" *ngIf="isLoading">
+
+    در حال بارگذاری ...
+
+    <span class="glyphicon glyphicon-refresh glyphicon-spin spinner"></span>
+
+  </div>
+
+  <!--The Html Template for Read-Only Rows-->
+
+  <ng-template #readOnlyTemplate let-item let-i="idx">
+
+    <td class="text-center">{{ queryModel.pageSize * (queryModel.page - 1) + i + 1 }}</td>
+<td class="text-center">{{ item.ID }}</td>
+<td class="text-center">{{ item.StartDate | momentJalaali:'jYYYY/jMM/jDD hh:mm' }}</td>
+<td class="text-center">{{ item.ExpireDate | momentJalaali:'jYYYY/jMM/jDD hh:mm' }}</td>
+<td class="text-center"> <img [src]="item.ImageSrc" style="width:150px;height:100px;"   />  </td>
+<td class="text-center">  {{item.Title}} </td>
+<td class="text-center">  {{item.Link}} </td>
+<td class="text-center">{{item.IsActive}}</td>
+  <td>
+
+        <input type="button" value="ویرایش" class="btn btn-default btn-xs" (click)="editItem(item)"
+        />
+
+      </td>
+
+      <td>
+
+        <input type="button" value="حذف" (click)="deleteItem(item)" class="btn btn-danger btn-xs"
+        />
+
+      </td>
+
+
+</ng-template>
+
+  <!--The Html Template for Editable Rows -->
+
+  <ng-template #editTemplate let-item let-i="idx" >
+
+    <td class="text-center">{{ queryModel.pageSize * (queryModel.page - 1) + i + 1 }}</td>
+
+
+<td class="text-center">{{ item.ID }}</td>
+<td class="text-center">  <dp-date-picker  dir="rtl" [(ngModel)]="selectedItem.StartDate  " mode="day"  theme="dp-material"></dp-date-picker></td>
+<td class="text-center">  <dp-date-picker  dir="rtl" [(ngModel)]="selectedItem.ExpireDate  " mode="day"  theme="dp-material"></dp-date-picker></td>
+<td class="text-center">    <app-file-uploader    [showProgress]="true" [autoUpload]="true"  [(fileName)]="selectedItem.ImageSrc"    ></app-file-uploader> </td>
+<td class="text-center">    <input type="text" [(ngModel)]="selectedItem.Title"   class="form-control" /> </td>
+<td class="text-center">     <input type="text" [(ngModel)]="selectedItem.Link"   class="form-control" /></td>
+<td class="text-center">   <input id="item-{{ item.ID }}" type="checkbox" [checked]="item.IsActive"
+  [(ngModel)]="selectedItem.IsActive" /> </td>
+<td class="text-center">
+
+      <input type="button" value="Save" (click)="saveItem()" class="btn btn-success btn-xs"
+
+        />
+
+    </td>
+
+    <td>
+
+      <input type="button" value="Cancel" (click)="cancel()" class="btn btn-warning btn-xs"
+
+      />
+
+    </td>
+
+  </ng-template>
+
+

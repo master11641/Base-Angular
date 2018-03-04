@@ -1,0 +1,16 @@
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+      <li data-target="#myCarousel"  *ngFor="let c of carousels;let i = index" [attr.data-slide-to]="i" [ngClass]="(i===0) ? 'active':''"   ></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div  [ngClass]="(i===0) ? 'item active':'item'"    *ngFor="let c of carousels;let i = index"  >
+      <img [src]="c.ImageSrc" alt="Los Angeles" class="img img-responsive">
+    </div>
+
+  </div>
+
+
+</div>

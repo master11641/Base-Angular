@@ -1,0 +1,63 @@
+<!-- <section  *ngIf="isLoggedIn===true">
+  <div class="container"> -->
+    <form #form="ngForm" class="form-inline" (submit)="submitForm()" novalidate id="signInFrm" name="signInFrm"   >
+
+      <label for="To">مدیران آنلاین</label>
+
+      <select [(ngModel)]="Message.To" id="selectTo" name="selectTo"   autocomplete="off" >
+        <option *ngFor="let user of onlineUsers;let i = index" [value]="user" >
+          {{user}}
+        </option>
+      </select>
+
+
+
+
+      <button #submitBtn type="submit" class="btn btn-primary"  *ngIf="personInChat.length !==0"  [disabled]="form.invalid "> <i class="fa fa-comment"></i> {{adminSupportName}} پشتیبانی آنلاین </button>
+    </form>
+
+
+
+
+      <div class="col-md-4 col-xs-12" *ngFor="let p of personInChat">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <span class="glyphicon glyphicon-comment"></span> ارتباط با پشتیبانی
+
+          </div>
+          <div class="panel-body">
+            <ul class="chat">
+              <li [ngClass]="(msg.From===Message.From)? 'left clearfix':'right clearfix' " *ngFor="let msg of filterChatsByPersonInChat(p);let i = index">
+                <span [ngClass]="(msg.From===Message.From)? 'chat-img pull-left':'chat-img pull-right' ">
+                  <img src='http://placehold.it/50/55C1E7/fff&text={{msg.From[0]}}' alt="User Avatar" class="img-circle" />
+                </span>
+                <div class="chat-body clearfix">
+                  <div class="header">
+                    <strong class="primary-font">{{msg.From}}</strong>
+                    <small [ngClass]="(msg.From===Message.From)? 'pull-right text-muted':'pull-left text-muted' ">
+                      <span class="glyphicon glyphicon-time"></span>
+                      {{msg.SendDate| momentJalaali:'jYYYY/jMM/jDD hh:mm:ss'}}
+                    </small>
+                  </div>
+                  <p>
+                    {{msg.MessageBody}}
+                  </p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="panel-footer">
+
+            <app-chat-widget [To]="p" [From]="Message.From" (SendMsgHandler)="sendMsg($event)"></app-chat-widget>
+          </div>
+        </div>
+      </div>
+    <!-- </div> -->
+
+    <!-- {{Messages | json}} -->
+
+  <!-- </div>
+</section>
+ -->
+
+

@@ -1,0 +1,33 @@
+
+    <!-- <input id="btn-input" type="text" [(ngModel)]="MessageBody" class="form-control input-sm" placeholder="Type your message here..." />
+    <span class="input-group-btn">
+        <button class="btn btn-warning btn-sm" id="btn-chat" (click)="sendMsg()"  >
+            ارسال</button>
+    </span> -->
+
+    <!-- <textarea id="status_message"  [(ngModel)]="MessageBody" placeholder="متن خود را وارد کنید ..." rows="10" cols="40" name="message"></textarea>
+    <div class="btn-footer">
+        <button class="bg_none"><i class="glyphicon glyphicon-film"></i> </button>
+        <button class="bg_none"><i class="glyphicon glyphicon-camera"></i> </button>
+              <button class="bg_none"><i class="glyphicon glyphicon-paperclip"></i> </button>
+        <button class="bg_none pull-right"><i class="glyphicon glyphicon-thumbs-up"  (click)="sendMsg()"  ></i> </button>
+        </div> -->
+
+    <!-- <div class="input-group">
+
+        <input id="btn-input" type="text" [(ngModel)]="MessageBody" class="form-control" placeholder="متن خود را وارد کنید ..." />
+  <span class="input-group-btn">
+          <button class="btn btn-default btn-xs" type="button" (click)="sendMsg()" >
+            ارسال
+          </button>
+        </span>
+      </div> -->
+
+      <textarea id="status_message"  [(ngModel)]="MessageBody" (keyup.enter)="sendMsg()"    placeholder="Type a message..." rows="10" cols="40" name="message"></textarea>
+      <div class="btn-footer">
+      <button class="bg_none"><i class="glyphicon glyphicon-film"></i> </button>
+      <button class="bg_none"><i class="glyphicon glyphicon-camera"></i> </button>
+            <button class="bg_none"><i class="glyphicon glyphicon-paperclip"></i> </button>
+      <button class="bg_none pull-right"  (click)="sendMsg()" ><i class="glyphicon glyphicon-thumbs-up"   ></i> </button>
+      </div>
+

@@ -1,0 +1,18 @@
+<div class="media"  >
+    <div class="media-left">
+      <i class="fa fa-user fa-2x"></i>
+    </div>
+    <div class="media-body">
+      <div class="media-heading"> {{Comment.FullName}} می گوید :  (موضوع {{Comment.Subject}}
+       |  تاریخ وزمان ارسال   {{Comment.CreatedAt | momentJalaali:'jYYYY/jMM/jDD hh:mm' }} )
+        <button (click)="confirmClicked(Comment)" *ngIf="isAdminPage"  > ویرایش و تایید کردن  </button> |
+        <button (click)="reply(Comment)"  > پاسخ به نظر </button>
+        </div>
+      <p>
+        {{Comment.Description}}
+      </p>
+          <ng-template ngFor let-contact [ngForOf]="Comment.Replies" >
+              <app-media [Comment]="contact"   ></app-media>
+            </ng-template>
+    </div>
+  </div>

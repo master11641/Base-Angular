@@ -1,0 +1,117 @@
+<section id="login">
+    <img src="/assets/Images/slimi.jpg" />
+<div class="container">
+  <div class="col-md-6 col-xs-12">
+
+     <form #form="ngForm" (submit)="submitForm()" novalidate id="signInFrm">
+        <div *ngIf="error" class="alert alert-danger " role="alert ">
+            {{error}}
+          </div>
+      <div class="form-group" [class.has-error]="username.invalid && username.touched">
+        <label for="username"> نام کاربری</label>
+        <input id="username" type="text" required name="username" [(ngModel)]="model.UserName"
+          #username="ngModel" class="form-control" placeholder="نام کاربری">
+        <div *ngIf="username.invalid && username.touched">
+          <div class="alert alert-danger"  *ngIf="username.errors['required']">
+           وارد کردن نام کاربری الزامی است .
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" [class.has-error]="password.invalid && password.touched">
+        <label for="password">پسورد</label>
+        <input id="password" type="password" required name="password" [(ngModel)]="model.Password"
+          #password="ngModel" class="form-control" placeholder="پسورد">
+        <div *ngIf="password.invalid && password.touched">
+          <div class="alert alert-danger"  *ngIf="password.errors['required']">
+         وارد کردن پسورد الزامی است .
+          </div>
+        </div>
+      </div>
+
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" name="rememberMe" [(ngModel)]="model.RememberMe"> مرا به خاطر داشته باش
+        </label>
+      </div>
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid ">ورود</button>
+    </form>
+  </div>
+
+
+  <div class="col-md-6 col-xs-12">
+
+           <form #frmRegister="ngForm" (submit)="Register(form)" novalidate id="signUpFrm">
+              <!-- <div *ngIf="error" class="alert alert-danger " role="alert ">
+                  {{error}}
+                </div> -->
+            <div class="form-group" [class.has-error]="username1.invalid && username1.touched">
+              <label for="username1"> نام کاربری</label>
+              <input id="username1" type="text" required name="username1" [(ngModel)]="registerModel.UserName"
+                #username1="ngModel" class="form-control" placeholder="نام کاربری" appRemoteValidator [remote-url]="remoteUsernameValidationUrl" remote-field="UserName"
+                remote-additional-fields="password"  minlength="4" appEmailValidator  class="form-control" >
+                <div *ngIf="username.pending" class="alert alert-warning">
+                  Checking server, Please wait ...
+                </div>
+              <div *ngIf="username1.invalid && username1.touched">
+                <div class="alert alert-danger"  *ngIf="username1.errors['required']">
+                 وارد کردن نام کاربری الزامی است .
+                </div>
+                <div class="alert alert-danger"  *ngIf="username1.errors.minlength">
+                  نام کاربری حداقل باید {{username1.errors.minlength.requiredLength}}  کاراکتر باشد .
+                </div>
+                <div class="alert alert-danger"  *ngIf="username1.errors.remoteValidation">
+                  {{username1.errors.remoteValidation.remoteValidationMessage}}
+                </div>
+                <div class="alert alert-danger"  *ngIf="username1.errors.appEmailValidator">
+                 ایمیل معتیر وارد کنید .
+                </div>
+              </div>
+
+            </div>
+            <div class="form-group" [class.has-error]="mobile.invalid && mobile.touched">
+                <label for="mobile"> شماره موبایل </label>
+                <input id="mobile" type="text" required name="mobile" [(ngModel)]="registerModel.Mobile"
+                  #mobile="ngModel" class="form-control" placeholder="شماره موبایل ">
+                <div *ngIf="mobile.invalid && mobile.touched">
+                  <div class="alert alert-danger"  *ngIf="mobile.errors['required']">
+                   وارد کردن  شماره موبایل الزامی است .
+                  </div>
+                </div>
+              </div>
+                <div class="form-group" [class.has-error]="confirmPassword.invalid && confirmPassword.touched">
+                    <label for="confirmPassword"> پسورد</label>
+                    <input id="confirmPassword" type="password"  required name="confirmPassword" [(ngModel)]="registerModel.ConfirmPassword"
+                      #confirmPassword="ngModel" class="form-control" placeholder=" پسورد "   >
+                    <div *ngIf="confirmPassword.invalid && confirmPassword.touched">
+                      <div class="alert alert-danger"  *ngIf="confirmPassword.errors['required']">
+                     وارد کردن  پسورد الزامی است .
+                      </div>
+
+                    </div>
+                  </div>
+                  <div class="form-group" [class.has-error]="password1.invalid && password1.touched">
+                    <label for="password1">تکرار پسورد</label>
+                    <input id="password1" type="password" required name="password" [(ngModel)]="registerModel.Password"  appValidateEqual compare-to="confirmPassword"
+                      #password1="ngModel" class="form-control" placeholder="تکرار پسورد"     >
+                    <div *ngIf="password1.invalid && password1.touched">
+                      <div class="alert alert-danger"  *ngIf="password1.errors['required']">
+                     وارد کردن تکرار پسورد الزامی است .
+                      </div>
+                      <div class="alert alert-danger"  *ngIf="password1.errors.appValidateEqual">
+                  پسورد با تکرار آن مطابقت ندارد .
+                      </div>
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary" [disabled]="frmRegister.invalid ">ثبت نام</button>
+
+          </form>
+        </div>
+
+
+
+</div>
+
+
+</section>

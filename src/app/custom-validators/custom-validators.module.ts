@@ -15,6 +15,6 @@ import { RemoteValidatorDirective } from "./remote-validator.directive";
     EqualValidatorDirective,
     EmailValidatorDirective,
     RemoteValidatorDirective
-  ]
+  ],exports:[RemoteValidatorDirective,EqualValidatorDirective,EmailValidatorDirective],
 })
 export class CustomValidatorsModule {}

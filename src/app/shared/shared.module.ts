@@ -1,6 +1,8 @@
-﻿
+﻿import { IsVisibleForUnknownUserDirective } from './directives/is-visible-for-unknown-user.directive';
+import { IsVisibleForAuthUserDirective } from "./directives/is-visible-for-auth-user.directive";
+
 import { ConfirmModalComponent } from "./confirm-modal/confirm-modal.component";
-import { NgModule, ModuleWithProviders,EventEmitter } from "@angular/core";
+import { NgModule, ModuleWithProviders, EventEmitter } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 import { ToastyModule } from "ng2-toasty";
@@ -20,12 +22,14 @@ import { FormsModule } from "@angular/forms";
     FileUploadModule,
     SharedBootstrapModule,
     FormsModule
-
   ],
-  entryComponents: [ConfirmModalComponent,FileUploaderComponent],
+  entryComponents: [ConfirmModalComponent, FileUploaderComponent],
   declarations: [
     // common and shared components/directives/pipes between more than one module and components will be listed here.
-    ConfirmModalComponent,FileUploaderComponent
+    ConfirmModalComponent,
+    FileUploaderComponent,
+    IsVisibleForAuthUserDirective,
+    IsVisibleForUnknownUserDirective
   ],
   exports: [
     CommonModule,
@@ -34,8 +38,9 @@ import { FormsModule } from "@angular/forms";
     SlimLoadingBarModule,
     FileUploadModule,
     SharedBootstrapModule,
-    FileUploaderComponent
-
+    FileUploaderComponent,
+    IsVisibleForAuthUserDirective,
+    IsVisibleForUnknownUserDirective
   ] // common and shared components/directives/pipes between more than one module and components will be listed here.
   /* No providers here! Since they’ll be already provided in AppModule. */
 })

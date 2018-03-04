@@ -30,4 +30,11 @@ export class AppConfigService {
 
 export class AppConfig {
   host: string;
+  chatWebSocketEndPoint:string;
+  apiEndpoint: string;
+  loginPath: string;
+  logoutPath: string;
+  refreshTokenPath: string;
+  accessTokenObjectKey: string;
+  refreshTokenObjectKey: string;
 }

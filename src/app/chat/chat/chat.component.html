@@ -1,0 +1,128 @@
+
+<section>
+<div class="container">
+    <form #form="ngForm" (submit)="submitForm()" novalidate id="signInFrm"  >
+
+      <!-- <div class="form-group" [class.has-error]="From.invalid && From.touched">
+        <label for="From"> ایمیل شروع کننده گفتگو</label>
+        <input id="From" type="text" required name="From" [(ngModel)]="Message.From"
+          #From="ngModel" class="form-control" placeholder="نام کاربری">
+        <div *ngIf="From.invalid && From.touched">
+          <div class="alert alert-danger"  *ngIf="From.errors['required']">
+           وارد کردن نام کاربری الزامی است .
+          </div>
+        </div>
+      </div>
+      <div class="form-group" [class.has-error]="To.invalid && To.touched">
+          <label for="To"> ایمیل شخص گیرنده پیام</label>
+          <input id="To" type="text" required name="To" [(ngModel)]="Message.To"
+            #To="ngModel" class="form-control" placeholder="نام کاربری">
+          <div *ngIf="To.invalid && To.touched">
+            <div class="alert alert-danger"  *ngIf="To.errors['required']">
+             وارد کردن نام کاربری الزامی است .
+            </div>
+          </div>
+        </div> -->
+    <div class="form-group" >
+          <label for="To"> ایمیل شخص گیرنده پیام</label>
+
+<select  [(ngModel)]="Message.To"  id="selectTo" name="selectTo" [ngModelOptions]="{standalone: true}" >
+  <option  *ngFor="let user of onlineUsers" [value]="user"  >
+{{user}}
+  </option>
+</select>
+
+
+        </div>
+
+        <button #submitBtn  type="submit" class="btn btn-primary" [disabled]="form.invalid ">اتصال</button>
+    </form>
+
+  {{IsConnected | json}}
+
+    <div class="row" >
+
+
+        <div class="col-md-4 col-xs-6" *ngFor="let p of personInChat" >
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-comment"></span> Chat
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </button>
+                        <ul class="dropdown-menu slidedown">
+                            <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-refresh">
+                            </span>Refresh</a></li>
+                            <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-ok-sign">
+                            </span>Available</a></li>
+                            <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-remove">
+                            </span>Busy</a></li>
+                            <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-time"></span>
+                                Away</a></li>
+                            <li class="divider"></li>
+                            <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-off"></span>
+                                Sign Out</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <ul class="chat">
+                        <li [ngClass]="(msg.From===Message.From)? 'left clearfix':'right clearfix' "    *ngFor="let msg of filterChatsByPersonInChat(p);let i = index" ><span  [ngClass]="(msg.From===Message.From)? 'chat-img pull-left':'chat-img pull-right' " >
+                            <img     src='http://placehold.it/50/55C1E7/fff&text={{msg.From[0]}}' alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">{{msg.From}}</strong> <small [ngClass]="(msg.From===Message.From)? 'pull-right text-muted':'pull-left text-muted' " >
+                                        <span class="glyphicon glyphicon-time"></span>
+{{msg.SendDate| momentJalaali:'jYYYY/jMM/jDD hh:mm:ss'}}
+                                      </small>
+                                </div>
+                                <p>
+                                {{msg.MessageBody}}
+                                </p>
+                            </div>
+                        </li>
+                        <!-- <li class="right clearfix"><span class="chat-img pull-right">
+                            <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
+                                    <strong class="pull-right primary-font">Bhaumik Patel</strong>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li> -->
+
+
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <!-- <div class="input-group">
+                        <input id="btn-input" type="text" [(ngModel)]="Message.MessageBody" class="form-control input-sm" placeholder="Type your message here..." />
+                        <span class="input-group-btn">
+                            <button class="btn btn-warning btn-sm" id="btn-chat" (click)="sendMsg()"  >
+                                ارسال</button>
+                        </span>
+                    </div> -->
+
+                    <app-chat-widget [To]="p"  [From]="Message.From" (SendMsgHandler)="sendMsg($event)"    ></app-chat-widget>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- {{Messages | json}} -->
+
+</div>
+</section>
+
+
+
+<!-- <audio #audioOption>
+    <source src='/assets/sounds/button-09.wav'  type="audio/wav">
+  </audio> -->

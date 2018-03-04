@@ -1,4 +1,6 @@
-import { ProductCategoryModule } from './product-category/product-category.module';
+import { UserOperationsModule } from './user-operations/user-operations.module';
+import { RolesModule } from './roles/roles.module';
+
 import { FeatureModule } from "./feature/feature.module";
 import { AppConfigService } from "./core/app-config.service";
 import { SharedModule } from "./shared/shared.module";
@@ -18,8 +20,8 @@ import { CustomPipeModule } from "./custom-pipe/custom-pipe.module";
 import { CustomValidatorsModule } from "./custom-validators/custom-validators.module";
 import { EmployeeModule } from "./employee/employee.module";
 
-import { ProductModule } from "./product/product.module";
-import { SimpleGridModule } from "./simple-grid/simple-grid.module";
+
+
 import { UploadFileModule } from "./upload-file/upload-file.module";
 import { UsingThirdPartyLibrariesModule } from "./using-third-party-libraries/using-third-party-libraries.module";
 import { WelcomeComponent } from "./welcome/welcome.component";
@@ -27,7 +29,18 @@ import { BrowserStorageSampleModule } from "./browser-storage-sample/browser-sto
 import { ReadAppConfigModule } from "./read-app-config/read-app-config.module";
 import { ModelStateValidationModule } from "./model-state-validation/model-state-validation.module";
 import { FroalaEditorModule, FroalaViewModule } from "angular-froala-wysiwyg";
-import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
+import { ModalDialogComponent } from "./modal-dialog/modal-dialog.component";
+import { AuthenticationModule } from "./authentication/authentication.module";
+
+
+
+
+import { CarouselsModule } from './carousels/carousels.module';
+
+import { DashboardModule } from './dashboard/dashboard.module';
+import { ContactModule } from './contact/contact.module';
+import { ChatModule } from './chat/chat.module';
+
 @NgModule({
   declarations: [AppComponent, WelcomeComponent, ModalDialogComponent],
   imports: [
@@ -38,20 +51,32 @@ import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
 
     SharedModule.forRoot(),
     EmployeeModule,
-    ProductModule,
+
     CustomValidatorsModule,
     UploadFileModule,
     UsingThirdPartyLibrariesModule,
-    SimpleGridModule,
+    UserOperationsModule,
+    RolesModule,
+
     CustomPipeModule,
-    ProductCategoryModule,
+
     AngularSecurityModule,
     BrowserStorageSampleModule,
     ReadAppConfigModule,
     ModelStateValidationModule,
     AppRoutingModule,
+    FroalaEditorModule.forRoot(),
+    FroalaViewModule.forRoot(),
+    AuthenticationModule,
     FeatureModule,
-    FroalaEditorModule.forRoot(), FroalaViewModule.forRoot() ,
+
+
+    CarouselsModule,
+
+    DashboardModule,
+    ContactModule,
+    ChatModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

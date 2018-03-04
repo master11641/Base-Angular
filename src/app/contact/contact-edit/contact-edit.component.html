@@ -1,0 +1,52 @@
+
+<section id="comment">
+  <div class="container">
+    <div class="alert alert-info" *ngIf="parentContact"   > در حال پاسخ به نظر آقا/خانم {{parentContact.FullName}} با موضوع : {{parentContact.Subject}} و شرح : {{parentContact.Description}} </div>
+
+<form #form="ngForm" (submit)="submitForm()" novalidate id="signInFrm">
+
+  <div class="form-group" [class.has-error]="Subject.invalid && Subject.touched">
+    <label for="Subject"> موضوع </label>
+    <input id="Subject" type="text" required name="Subject" [(ngModel)]="Contact.Subject"
+      #Subject="ngModel" class="form-control" placeholder="موضوع ">
+    <div *ngIf="Subject.invalid && Subject.touched">
+      <div class="alert alert-danger"  *ngIf="Subject.errors['required']">
+       وارد کردن موضوع الزامی است .
+      </div>
+    </div>
+  </div>
+  <div class="form-group" [class.has-error]="Description.invalid && Description.touched" >
+      <label for="Description"> متن نظر </label>
+      <textarea cols="8" id="Description" type="text" required name="Description" [(ngModel)]="Contact.Description"
+        #Description="ngModel" class="form-control" placeholder=" متن نظر">
+</textarea>
+      <div *ngIf="Description.invalid && Description.touched">
+        <div class="alert alert-danger"  *ngIf="Description.errors['required']">
+         وارد کردن متن نظر الزامی است .
+        </div>
+      </div>
+    </div>
+
+
+  <div class="checkbox" *ngIf="isAdminPage && replyId===0"  >
+    <label>
+      <input type="checkbox" name="IsConfirm" [(ngModel)]="Contact.IsConfirm">نظر را جهت نمایش تایید می کنید ؟
+    </label>
+  </div>
+  <div class="checkbox" *ngIf="!isAdminPage"  >
+      <label>
+        <input type="checkbox" name="IsShow"  [(ngModel)]="Contact.IsShow">نمایش داده شود ؟
+
+      </label>
+    </div>
+    <div class="checkbox" *ngIf="!isAdminPage && replyId===0 "  >
+      <label>
+        <input type="checkbox" name="IsEmailSend"  [(ngModel)]="Contact.IsEmailSend">پاسخ از طریق ایمیل ارسال شود ؟
+
+      </label>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="form.invalid ">ثبت </button>
+</form>
+
+  </div>
+</section>

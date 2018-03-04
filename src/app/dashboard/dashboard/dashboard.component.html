@@ -1,0 +1,218 @@
+
+  <div class="row">
+
+      <div class="col-lg-12">
+          <h1 class="page-header">داشبورد </h1>
+      </div>
+      <!-- /.col-lg-12 -->
+  </div>
+  <!-- /.row -->
+  <div class="row">
+      <div class="col-lg-3 col-md-6">
+          <div class="panel panel-yellow">
+              <div class="panel-heading">
+                  <div class="row">
+                      <div class="col-xs-3">
+                          <i class="fa fa-users fa-2x"></i>
+                      </div>
+                      <div class="col-xs-9 text-right">
+                          <div class="huge">{{UserCount}}</div>
+                          <div>کاربران ثبت شده</div>
+                      </div>
+                  </div>
+              </div>
+              <a  [routerLink]="['/admin/users']">
+                  <div class="panel-footer">
+                      <span class="pull-left">مشاهده جزئیات</span>
+                      <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                      <div class="clearfix"></div>
+                  </div>
+              </a>
+          </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+          <div class="panel panel-red">
+              <div class="panel-heading">
+                  <div class="row">
+                      <div class="col-xs-3">
+                          <i class="fa fa-ticket  fa-2x"></i>
+                      </div>
+                      <div class="col-xs-9 text-right">
+                          <div class="huge">{{ordersCount}}</div>
+                          <div>
+                        سفارشات ثبت شده
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <a  [routerLink]="['/admin/orders']" style="color: red;">
+                  <div class="panel-footer">
+                      <span class="pull-left">مشاهده جزئیات</span>
+                      <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                      <div class="clearfix"></div>
+                  </div>
+              </a>
+          </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+          <div class="panel panel-primary">
+              <div class="panel-heading">
+                  <div class="row">
+                      <div class="col-xs-3">
+                          <i class="fa fa-money fa-2x"></i>
+                      </div>
+                      <div class="col-xs-9 text-right">
+                          <div class="huge">{{paymentSum}} تومان</div>
+                          <div>
+                          درآمد تایید شده
+                            </div>
+                      </div>
+                  </div>
+              </div>
+              <a [routerLink]="['/admin','orders']" >
+                  <div class="panel-footer">
+                      <span class="pull-left"> مشاهده جزئیات  </span>
+                      <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                      <div class="clearfix"></div>
+                  </div>
+              </a>
+          </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+          <div class="panel panel-green">
+              <div class="panel-heading">
+                  <div class="row">
+                      <div class="col-xs-3">
+                          <i class="fa fa-comment fa-2x"></i>
+                      </div>
+                      <div class="col-xs-9 text-right">
+                          <div class="huge"> {{commentsCount}}   </div>
+                          <div>
+                          نظرات خوانده نشده
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <a  [routerLink]="['/admin','contacts']" >
+                  <div class="panel-footer">
+                      <span class="pull-left">  مشاهده جزئیات </span>
+                      <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                      <div class="clearfix"></div>
+                  </div>
+              </a>
+          </div>
+      </div>
+
+  </div>
+  <!-- /.row -->
+  <div class="row">s
+      <div class="col-lg-8">
+          <div class="panel panel-default" >
+              <div class="panel-heading">
+                  <div class="panel-title">
+                  <i class="fa fa-bar-chart-o fa-fw"></i>  نمودار میله ای تعداد سفارشات ثبت شده برحسب عنوان کالا
+                        </div> </div>
+              <!-- /.panel-heading -->
+              <div class="panel-body">
+
+                      <div style="display: block" *ngIf="this.DisplayValue">
+                        <canvas baseChart
+                                [datasets]="barChartData"
+                                [labels]="barChartLabels"
+
+                                [legend]="barChartLegend"
+                                [chartType]="barChartType"
+
+                               ></canvas>
+
+                      </div>
+
+              </div>
+
+              <!-- /.panel-body -->
+          </div>
+          <!-- /.panel -->
+          <div class="panel panel-default">
+              <div class="panel-heading">
+                <div class="panel-title">
+                  <i class="fa fa-bar-chart-o fa-fw"></i>پرداخت ها طی یک هفته گذشته
+                        </div>
+
+              </div>
+              <!-- /.panel-heading -->
+              <div class="panel-body">
+                <div style="display: block" >
+                  <canvas baseChart
+                  [datasets]="barChartData1"
+                  [labels]="barChartLabels1"
+
+                  [legend]="barChartLegend1"
+                  [chartType]="barChartType1"
+
+                 ></canvas>
+
+                </div>
+
+                  <!-- /.row -->
+              </div>
+              <!-- /.panel-body -->
+          </div>
+
+      </div>
+      <!-- /.col-lg-8 -->
+      <div class="col-lg-4">
+          <div class="panel panel-default">
+              <div class="panel-heading">
+<div class="panel-title">
+  <i class="fa fa-users "></i> آخرین کاربران ثبت نام شده
+</div>
+
+              </div>
+              <!-- /.panel-heading -->
+              <div class="panel-body">
+                  <div class="list-group" >
+                      <a href="#" class="list-group-item" *ngFor="let user of Users">
+
+                          <i class="fa  fa-user"></i> {{user.FullName}}
+<span class="pull-left text-muted small"><em>{{user.Email}}</em>
+                          </span>
+                      </a>
+
+                  </div>
+                  <!-- /.list-group -->
+                  <a  class="btn btn-default btn-block" routerLink="/admin/users">مشاهده کلیه کاربران</a>
+              </div>
+              <!-- /.panel-body -->
+          </div>
+
+  </div>
+
+<div class="col-lg-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <i class="fa fa-bar-chart-o fa-fw"></i>سفارشات طی یک هفته گذشته
+                  </div>
+
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+          <div style="display: block" >
+            <canvas baseChart
+            [datasets]="barChartData2"
+            [labels]="barChartLabels2"
+
+            [legend]="barChartLegend2"
+            [chartType]="barChartType2"
+
+           ></canvas>
+
+          </div>
+
+            <!-- /.row -->
+        </div>
+        <!-- /.panel-body -->
+    </div>
+</div>
+
+  <!-- /.row -->

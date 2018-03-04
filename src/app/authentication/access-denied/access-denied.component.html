@@ -1,0 +1,18 @@
+<section>
+  <div class="container" style="text-align: center;margin-bottom: 35px;">
+
+    <h1 class="text-danger">
+    <span class="glyphicon glyphicon-ban-circle"></span> Access Denied
+  </h1>
+  <p>متاسفانه شما اجازه دسترسی به این صفحه را ندارید !</p>
+  <button class="btn btn-default" (click)="goBack()">
+    <span class="glyphicon glyphicon-arrow-left"></span> برگشت
+  </button>
+
+  <button *ngIf="!isAuthenticated"  class="btn btn-success" [routerLink]="['/pages','login']"
+    queryParamsHandling="merge">
+    ورود
+  </button>
+  </div>
+</section>
+

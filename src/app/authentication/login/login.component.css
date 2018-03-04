@@ -1,0 +1,85 @@
+#login{
+  padding-top: 80px;
+  background-image: url('/assets/Images/Mosque.jpg') ;
+  background-repeat:no-repeat;
+  background-position-x: center;
+  background-size: cover;
+  min-height: 400px;
+padding-bottom: 80px;
+}
+#login img{
+  position:relative;
+    top:-110px;
+    right:50%;
+    width:50px;
+    height:50px;
+  }
+  /*---------------------------------------------
+فرم ورود
+  ----------------------------------------------*/
+#signInFrm{
+  background-color: rgb(255, 255, 255);
+ padding: 50px 25px;
+ border-top-color: rgb(1, 153, 138);
+ border-top-style: ridge;
+
+}
+#signInFrm input[type="text"].form-control ,#signInFrm input[type="password"].form-control {
+  padding: 10px;
+border-radius: 6px;
+border-color: rgb(89, 167, 180);
+}
+#signInFrm button[type="submit"]{
+position: relative;
+margin: 0px;
+right: 35%;
+bottom: -70px;
+background-color: rgb(1, 153, 115);
+color:white;
+width: 150px;
+border-radius: 8px;
+padding-bottom: 10px;
+}
+  /*---------------------------------------------
+فرم ثبت نام
+  ----------------------------------------------*/
+#signUpFrm{
+  background-color: rgb(255, 255, 255);
+ padding: 50px 25px;
+ border-top-color: rgb(0, 152, 184);
+ border-top-style: ridge;
+
+}
+#signUpFrm input[type="text"].form-control ,#signUpFrm input[type="password"].form-control {
+padding: 10px;
+border-radius: 6px;
+border-color: rgb(89, 167, 180);
+}
+#signUpFrm button[type="submit"]{
+position: relative;
+margin: 0px;
+right: 35%;
+bottom: -70px;
+background-color: rgb(0, 152, 184);
+color:white;
+width: 150px;
+border-radius: 8px;
+padding-bottom: 10px;
+}
+@media (max-width: 990px) {
+  #signUpFrm{
+    margin-top: 80px;
+  }
+}
+@media (max-width: 400px) {
+  #signInFrm button[type="submit"]{
+
+    right: 22%;
+
+    }
+  #signUpFrm button[type="submit"]{
+
+    right: 25%;
+
+    }
+}

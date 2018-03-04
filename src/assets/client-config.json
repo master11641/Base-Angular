@@ -1,3 +1,10 @@
 ﻿{
-  "host": "http://localhost:5000"
+  "host": "http://localhost:8080",
+  "chatWebSocketEndPoint":"ws://localhost:8080",
+  "apiEndpoint": "http://localhost:8080/api",
+  "loginPath": "login",
+  "logoutPath": "logout",
+  "refreshTokenPath": "account/RefreshToken",
+  "accessTokenObjectKey": "token",
+  "refreshTokenObjectKey": "token"
 }
