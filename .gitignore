@@ -57,3 +57,4 @@ web.config
 *.bat
 proxy.config.json
 LICENSE.md
+node_modules

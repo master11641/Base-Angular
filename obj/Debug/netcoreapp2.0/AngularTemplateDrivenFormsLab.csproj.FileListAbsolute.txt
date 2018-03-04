@@ -1,0 +1,10 @@
+C:\GoProjects\src\company\Base-Angular\bin\Debug\netcoreapp2.0\AngularTemplateDrivenFormsLab.deps.json
+C:\GoProjects\src\company\Base-Angular\bin\Debug\netcoreapp2.0\AngularTemplateDrivenFormsLab.runtimeconfig.json
+C:\GoProjects\src\company\Base-Angular\bin\Debug\netcoreapp2.0\AngularTemplateDrivenFormsLab.runtimeconfig.dev.json
+C:\GoProjects\src\company\Base-Angular\bin\Debug\netcoreapp2.0\AngularTemplateDrivenFormsLab.dll
+C:\GoProjects\src\company\Base-Angular\bin\Debug\netcoreapp2.0\AngularTemplateDrivenFormsLab.pdb
+C:\GoProjects\src\company\Base-Angular\obj\Debug\netcoreapp2.0\AngularTemplateDrivenFormsLab.csproj.CoreCompileInputs.cache
+C:\GoProjects\src\company\Base-Angular\obj\Debug\netcoreapp2.0\AngularTemplateDrivenFormsLab.AssemblyInfoInputs.cache
+C:\GoProjects\src\company\Base-Angular\obj\Debug\netcoreapp2.0\AngularTemplateDrivenFormsLab.AssemblyInfo.cs
+C:\GoProjects\src\company\Base-Angular\obj\Debug\netcoreapp2.0\AngularTemplateDrivenFormsLab.dll
+C:\GoProjects\src\company\Base-Angular\obj\Debug\netcoreapp2.0\AngularTemplateDrivenFormsLab.pdb
